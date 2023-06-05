@@ -4,7 +4,10 @@ display.innerText = 0;
 
 const keys = document.querySelector(".keys").querySelectorAll("button");
 
+let currentValue = "0";
 let cumulativeValue = 0;
+let tempValue = 0;
+let operator = "+";
 
 const calculation = {
   "+": (a, b) => a + b,
@@ -17,22 +20,32 @@ const calculation = {
 const keyPress = () => {
   for (let key of keys) {
     key.addEventListener("click", () => {
-      // check if not a number or decimal
-      const regex = /[\/\*\-\+=\.]/;
+      console.log(typeof currentValue);
+      // check if an operator
+      const regex = /[-*+=\/]/;
       if (regex.test(key.innerText)) {
-        let currentValue = +display.innerText;
-        let operator = key.innerText;
-        console.log(operator);
-        const result = calculation[operator](cumulativeValue, currentValue);
-        display.innerText = 0;
-        // if a decimal point and a decimal exists on the displat, do nothing
+        console.log(key.innerText);
+        // cumulativeValue = cumulativeValue + currentValue;
+        tempValue = 0;
+        operator = key.innerText;
+        // const result = calculation[operator](cumulativeValue, currentValue);
+        // display.innerText = 0;
+        // if decimal point is clicked and a decimal exists on the display, do nothing
       } else if (key.innerText === "." && display.innerText.includes(".")) {
-        console.log("do nothing");
+        console.log("only one period allowed");
 
         // if anything else, concat the number to the display
       } else {
+        display.innerText = tempValue;
         display.innerText += key.innerText;
-        display.innerText = +display.innerText;
+        if (key.innerText !== ".") {
+          display.innerText = +display.innerText;
+        }
+        tempValue = display.innerText;
+        currentValue = +display.innerText;
+        console.log(cumulativeValue, currentValue);
+        cumulativeValue = calculation[operator](cumulativeValue, currentValue);
+        display.innerText = cumulativeValue;
       }
     });
   }

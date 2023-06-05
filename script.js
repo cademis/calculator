@@ -30,19 +30,17 @@ const keyPress = () => {
       } else if (regex.test(key.innerText)) {
         operator = key.innerText; // set the operator to use in next calculation
         currentValue = "";
+      } else if (regex.test(lastKeyPress)) {
+        // if the last key press was a operator
+        currentValue = ""; //reset the currentValue
+        currentValue += key.innerText; // concat current value
+        calculator(); // run the calculation based on the previously set operator
       } else {
-        if (regex.test(lastKeyPress)) {
-          // if the last key press was a operator
-          currentValue = ""; //reset the currentValue
-          currentValue += key.innerText; // concat current value
-          calculator(); // run the calculation based on the previously set operator
-        } else {
-          currentValue += key.innerText; // concat current value
-          calculator(); // runs the calculation based on the initial or previously set operation
-        }
+        currentValue += key.innerText; // concat current value
+        calculator(); // runs the calculation based on the initial or previously set operation
       }
       lastKeyPress = key.innerText;
-      debugging("A");
+      debugging();
     });
   }
 };
@@ -52,10 +50,14 @@ const calculator = () => {
   interimValue = +calculation[operator](interimValue, +currentValue);
 };
 
-const debugging = (stage) => {
+const debugging = () => {
   console.log(
-    `{stage: ${stage}, interimValue: ${interimValue}, cumulativeValue: ${cumulativeValue}, currentValue: ${currentValue}, operator: ${operator}, lastKeyPress: ${lastKeyPress}} `
+    `interimValue: ${interimValue}, cumulativeValue: ${cumulativeValue}, currentValue: ${currentValue}, operator: ${operator}, lastKeyPress: ${lastKeyPress}} `
   );
 };
+
+function resetPage() {
+  location.reload();
+}
 
 keyPress();

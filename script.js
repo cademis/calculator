@@ -7,7 +7,7 @@ const keys = document.querySelector(".keys").querySelectorAll("button");
 let currentValue = "";
 let cumulativeValue;
 let interimValue = 0;
-let operator = "+"; // set to run the first operation as an addition
+let operator = "+"; // initially set to run the first operation as an addition when the first key is pressed
 let lastKeyPress;
 
 const calculation = {
@@ -35,10 +35,10 @@ const keyPress = () => {
           // if the last key press was a operator
           currentValue = ""; //reset the currentValue
           currentValue += key.innerText; // concat current value
-          calculator(); // runs the calculation based on the previously set operation
+          calculator(); // run the calculation based on the previously set operator
         } else {
           currentValue += key.innerText; // concat current value
-          calculator(); // runs the calculation based on the previously set operation
+          calculator(); // runs the calculation based on the initial or previously set operation
         }
       }
       lastKeyPress = key.innerText;

@@ -52,16 +52,6 @@ const keyPress = () => {
           cumulativeValue = currentValue;
         }
         lastKeyPress = key.innerText;
-        console.log(
-          `key.innerText = ${key.innerText}
-operator = ${operator}
-currentValue = ${currentValue}
-typeof currentValue = ${typeof currentValue}
-cumunilativeValue = ${cumulativeValue}
-typeof cumunilativeValue = ${typeof cumulativeValue}
-lastKeyPress = ${lastKeyPress}
-tempValue = ${tempValue}`
-        );
       } else if (key.innerText === "." && display.innerText.includes(".")) {
         console.log("C");
         // if decimal point is clicked and a decimal exists on the display, throw a console.log error
@@ -79,16 +69,6 @@ tempValue = ${tempValue}`
         cumulativeValue = +cumulativeValue;
         tempValue = +display.innerText;
         lastKeyPress = key.innerText;
-        console.log(
-          `key.innerText = ${key.innerText}
-operator = ${operator}
-currentValue = ${currentValue}
-typeof currentValue = ${typeof currentValue}
-cumunilativeValue = ${cumulativeValue}
-typeof cumunilativeValue = ${typeof cumulativeValue}
-lastKeyPress = ${lastKeyPress}
-tempValue = ${tempValue}`
-        );
         // currentValue = +display.innerText;
         // console.log(cumulativeValue, currentValue);
         // cumulativeValue = calculation[operator](cumulativeValue, currentValue);
@@ -103,16 +83,6 @@ tempValue = ${tempValue}`
         }
         currentValue = +display.innerText;
         lastKeyPress = key.innerText;
-        console.log(
-          `key.innerText = ${key.innerText}
-operator = ${operator}
-currentValue = ${currentValue}
-typeof currentValue = ${typeof currentValue}
-cumunilativeValue = ${cumulativeValue}
-typeof cumunilativeValue = ${typeof cumulativeValue}
-lastKeyPress = ${lastKeyPress}
-tempValue = ${tempValue}`
-        );
       }
     });
   }
